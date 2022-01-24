@@ -27,6 +27,7 @@ class App extends Component {
       ]
     }
     this.deleteUser = this.deleteUser.bind(this);
+    this.addUser = this.addUser.bind(this);
   }
 
   deleteUser(id) {
@@ -38,16 +39,21 @@ class App extends Component {
     })
   }
 
-
+  addUser(newUser) {
+    let updatedUsers = this.state.users;
+    updatedUsers.push(newUser);
+    this.setState({
+      users: updatedUsers
+    })
+  }
 
   render() {
     const title = "User app";
-
     return (
       <div className='container'>
         <h5>{title}</h5>
         <hr />
-        <AddUser />
+        <AddUser addUser={this.addUser} />
         <hr />
         <Users deleteUser={this.deleteUser} users={this.state.users} />
       </div>
